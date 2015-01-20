@@ -5,6 +5,7 @@ f1 <- readRDS("summarySCC_PM25.rds", refhook = NULL)
 
 f2 <- readRDS("Source_Classification_Code.rds", refhook = NULL)
 
+# Extract data of Baltimore City (fips == "24510")
 Baltimore <- f1[f1$fips == "24510", ] 
 
 head(Baltimore, 5)
@@ -19,21 +20,22 @@ library(ggplot2)
 
 direct <- paste (getwd(), "/plot3.png", sep = "", collapse = NULL)
 
-png(filename = direct, width = 500, height = 500, units = "px")
+png(filename = direct, width = 600, height = 500, units = "px")
 
-g2 <- ggplot(Baltimore, aes(factor(year), Emissions, fill = type)) 
+g <- ggplot(Baltimore, aes(factor(year), Emissions, fill = type)) 
 
-g2 + geom_bar(stat = "identity") + theme_bw() + guides(fill = FALSE) +  facet_grid(.~ type,scales = "free",space = "free") + labs(x = "year", y = expression("Total PM"[2.5]*" Emission (Tons)")) + labs(title = expression("PM"[2.5]*" Emissions, Baltimore City 1999-2008 by Source Type"))
+g + geom_bar(stat = "identity") + theme_bw() + facet_grid(.~ type, scales = "free", space = "free") + labs(x = "year", y = expression("Total PM"[2.5]*" Emissions (Tons)")) + labs(title = expression("PM"[2.5]*" Emissions, Baltimore City 1999-2008 by Source Type"))
 
 dev.off()
 
 # 
-# direct <- paste (getwd(), "/plot3.png", sep = "", collapse = NULL)
+# direct <- paste (getwd(), "/plot3-1.png", sep = "", collapse = NULL)
 # 
 # png(filename = direct, width = 500, height = 500, units = "px")
 # 
-# g <- ggplot(Baltimore, aes(factor(year), Emissions, fill = type)) 
+# g2 <- ggplot(Baltimore, aes(factor(year), Emissions, fill = type)) 
 # 
-# g + geom_bar(stat = "identity") + theme_bw() + labs(x = "year", y = expression("Total PM"[2.5]*" Emission (Tons)")) + labs(title = expression("PM"[2.5]*" Emissions, Baltimore City 1999-2008 by Source Type"))
+# g2 + geom_bar(stat = "identity") + theme_bw() + guides(fill = FALSE) +   facet_grid(.~ type, scales = "free", space = "free") + labs(x = "year", y = expression("Total PM"[2.5]*" Emissions (Tons)")) + labs(title = expression("PM"[2.5]*" Emissions, Baltimore City 1999-2008 by Source Type"))
 # 
 # dev.off()
+#

@@ -1,2 +1,2 @@
 # ExData_Plotting2
-Assignment 2 for Exploratory Data Analysis. 
+Peer Assignment 2 for Exploratory Data Analysis. 
